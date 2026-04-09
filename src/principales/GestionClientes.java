@@ -39,6 +39,7 @@ public class GestionClientes {
 				case 5:
 					System.out.println("Saliendo...");
 					activo = false;
+					break;
 				default:
 					break;
 			}
@@ -51,7 +52,7 @@ public class GestionClientes {
 		System.out.println("Por favor elige una opción: ");
 		System.out.println("1. Crear cliente.");
 		System.out.println("2. Buscar cliente.");
-		System.out.println("3. Alistar todos los clientes.");
+		System.out.println("3. Listar todos los clientes.");
 		System.out.println("4. Eliminar cliente.");
 		System.out.println("5. Salir");
 	}
@@ -105,7 +106,7 @@ public class GestionClientes {
 	}
 
 	private static void borrarCliente() {
-		System.out.println("Por favor introduce el cif del empleado que vas a borrar: ");
+		System.out.println("Por favor introduce el cif del cliente que vas a borrar: ");
 		String cif = sc.nextLine();
 		Cliente clienteEncontrado = dao.buscarCliente(cif);
 
@@ -124,6 +125,7 @@ public class GestionClientes {
 					break;
 				case 2:
 					System.out.println("Cliente no eliminado.");
+					break;
 				default:
 					break;
 			}
