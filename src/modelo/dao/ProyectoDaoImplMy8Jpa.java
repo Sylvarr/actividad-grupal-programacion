@@ -126,7 +126,7 @@ public class ProyectoDaoImplMy8Jpa implements ProyectoDao {
     EntityManager em = JpaUtil.getEntityManager();
     try {
       return em.createQuery(
-          "SELECT COALESCE(SUM(p.ventaPrevisto) - SUM(p.costeReal), 0) FROM Proyecto p WHERE p.estado = 'terminado'",
+          "SELECT COALESCE(SUM(p.ventaPrevisto) - SUM(p.costeReal), 0) FROM Proyecto p WHERE p.estado = 'TERMINADO'",
           Double.class)
           .getSingleResult();
     } finally {

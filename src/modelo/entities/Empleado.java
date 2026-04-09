@@ -41,10 +41,9 @@ public class Empleado {
 	public Empleado() {
 	}
 
-	public Empleado(int idEmpl, String nombre, String apellidos, char genero, String email, String password,
+	public Empleado(String nombre, String apellidos, char genero, String email, String password,
 			double salario, LocalDate fechaIngreso, LocalDate fechaNacimiento, Perfil perfil,
 			Departamento departamento) {
-		this.idEmpl = idEmpl;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.genero = genero;
@@ -60,7 +59,8 @@ public class Empleado {
 	// ===================== MÉTODOS PROPIOS =====================
 
 	/**
-	 * Calcula el salario mensual dividiendo el salario anual entre el número de meses.
+	 * Calcula el salario mensual dividiendo el salario anual entre el número de
+	 * meses.
 	 */
 	public double salarioMensual(int meses) {
 		return salario / meses;
