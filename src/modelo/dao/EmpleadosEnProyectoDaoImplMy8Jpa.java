@@ -3,11 +3,14 @@ package modelo.dao;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import modelo.entities.ProyectoConEmpleados;
 
 public class EmpleadosEnProyectoDaoImplMy8Jpa implements EmpleadosEnProyectoDao{
 
 	private EntityManager em = JpaUtil.getEntityManager();
+	private String jpql;
+	private Query query; 
 	
 	@Override
 	public void crearProyectoConEmpleados(ProyectoConEmpleados proyectoConEmpleados) {
@@ -59,26 +62,39 @@ public class EmpleadosEnProyectoDaoImplMy8Jpa implements EmpleadosEnProyectoDao{
 
 	@Override
 	public List<ProyectoConEmpleados> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "from ProyectoConEmpleados p";
+		query = em.createQuery(jpql);
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Empleado> empleadosByProyecto(String codigoProyecto) {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql= "Select e from Empleado e inner join ProyectoConEmpleados p on e.idEmpl = p.idEmpl where p.idProyecto = :codigoP";
+		query = em.createQuery(jpql);
+		query.setParameter("codigoP", codigoProyecto);
+		return query.getResultList();
 	}
 
 	@Override
 	public int asignarEmpleadosAProyecto(List<ProyectoConEmpleados> empleados) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			em.getTransaction().begin();
+			for(ProyectoConEmpleados proyecto : empleados)
+			em.persist(proyecto);
+			em.getTransaction().commit();
+			return empleados.size();
+		} catch (Exception e) {
+			System.out.println("Error con asignarEmpleadosAProyecto: " + e.getMessage());
+			return 0;
+		}
 	}
 
 	@Override
 	public int horasAsignadasAProyecto(String codigoProyecto) {
-		// TODO Auto-generated method stub
-		return 0;
+		String jpql= "Select SUM(p.horasAsignadas) from ProyectoConEmpleados p where p.idProyecto = :codigoP";
+		query = em.createQuery(jpql);
+		query.setParameter("codigoP", codigoProyecto);
+		return 0;		
 	}
 
 	@Override
