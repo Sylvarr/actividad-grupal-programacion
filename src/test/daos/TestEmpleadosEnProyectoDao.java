@@ -14,7 +14,7 @@ import modelo.entities.Empleado;
 import modelo.entities.ProyectoConEmpleados;
 
 
-public class TestEmpleadosEnProyecto {
+public class TestEmpleadosEnProyectoDao {
 
 	private static EmpleadosEnProyectoDao epdao;
 	private static EmpleadoDao edao;
