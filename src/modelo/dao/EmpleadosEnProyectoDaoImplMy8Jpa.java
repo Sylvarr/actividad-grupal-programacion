@@ -96,7 +96,7 @@ public class EmpleadosEnProyectoDaoImplMy8Jpa implements EmpleadosEnProyectoDao{
 		query.setParameter("codigoP", codigoProyecto);
 		return 0;		
 	}
-
+ 
 	@Override
 	public double costeActualDeEmpleadosEnProyecto(String codigoProyecto) {
 		// TODO Auto-generated method stub
