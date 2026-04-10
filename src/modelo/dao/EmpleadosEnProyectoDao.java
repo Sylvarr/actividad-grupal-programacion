@@ -2,6 +2,7 @@ package modelo.dao;
 
 import java.util.List;
 
+import modelo.entities.Empleado;
 import modelo.entities.ProyectoConEmpleados;
 
 public interface EmpleadosEnProyectoDao {

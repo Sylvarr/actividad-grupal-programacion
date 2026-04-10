@@ -4,6 +4,7 @@ import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import modelo.entities.Empleado;
 import modelo.entities.ProyectoConEmpleados;
 
 public class EmpleadosEnProyectoDaoImplMy8Jpa implements EmpleadosEnProyectoDao{
@@ -69,7 +70,7 @@ public class EmpleadosEnProyectoDaoImplMy8Jpa implements EmpleadosEnProyectoDao{
 
 	@Override
 	public List<Empleado> empleadosByProyecto(String codigoProyecto) {
-		String jpql= "Select e from Empleado e inner join ProyectoConEmpleados p on e.idEmpl = p.idEmpl where p.idProyecto = :codigoP";
+		String jpql= "Select e from Empleado e inner join ProyectoConEmpleados p on e.idEmpl = p.empleado.idEmpl where p.proyecto.idProyecto = :codigoP";
 		query = em.createQuery(jpql);
 		query.setParameter("codigoP", codigoProyecto);
 		return query.getResultList();
@@ -91,16 +92,24 @@ public class EmpleadosEnProyectoDaoImplMy8Jpa implements EmpleadosEnProyectoDao{
 
 	@Override
 	public int horasAsignadasAProyecto(String codigoProyecto) {
-		String jpql= "Select SUM(p.horasAsignadas) from ProyectoConEmpleados p where p.idProyecto = :codigoP";
+		String jpql= "Select SUM(p.horasAsignadas) from ProyectoConEmpleados p where p.proyecto.idProyecto = :codigoP";
 		query = em.createQuery(jpql);
 		query.setParameter("codigoP", codigoProyecto);
-		return 0;		
+		Number resultado = (Number) query.getSingleResult();
+		if (resultado == null)
+			return 0;
+		return resultado.intValue();		
 	}
  
 	@Override
 	public double costeActualDeEmpleadosEnProyecto(String codigoProyecto) {
-		// TODO Auto-generated method stub
-		return 0;
+		String jpql= "Select SUM(p.horasAsignadas * p.empleado.perfil.tasaStandard) from ProyectoConEmpleados p where p.proyecto.idProyecto = :codigoP";
+		query = em.createQuery(jpql);
+		query.setParameter("codigoP", codigoProyecto);
+		Number resultado = (Number) query.getSingleResult();
+		if (resultado == null)
+			return 0;
+		return resultado.doubleValue();			
 	}
 
 }

@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
@@ -19,10 +21,12 @@ public class ProyectoConEmpleados {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="numero_orden")
 	private int numeroOrden;
-	@Column(name="id_proyecto")
-	private String idProyecto;
-	@Column(name="id_empl")
-	private int idEmpl;
+	@ManyToOne
+	@JoinColumn(name="id_proyecto")
+	private Proyecto proyecto;
+	@ManyToOne
+	@JoinColumn(name="id_empl")
+	private Empleado empleado;
 	@Column(name="horas_asignadas")
 	private int horasAsignadas;
 	@Column(name="fecha_incorporacion")
@@ -32,75 +36,61 @@ public class ProyectoConEmpleados {
 	public ProyectoConEmpleados(){	
 	}
 	
-
-
-	ProyectoConEmpleados(int numeroOrden, String idProyecto, int idEmpl, int horasAsignadas,
+	ProyectoConEmpleados(int numeroOrden, Proyecto proyecto, Empleado empleado, int horasAsignadas,
 			LocalDate fechaIncorporacion) {
 		super();
 		this.numeroOrden = numeroOrden;
-		this.idProyecto = idProyecto;
-		this.idEmpl = idEmpl;
+		this.proyecto = proyecto;
+		this.empleado = empleado;
 		this.horasAsignadas = horasAsignadas;
 		this.fechaIncorporacion = fechaIncorporacion;
 	}
-
-
+	
 
 	public int getNumeroOrden() {
 		return numeroOrden;
 	}
 
-
 	public void setNumeroOrden(int numeroOrden) {
 		this.numeroOrden = numeroOrden;
 	}
 
-
-	public String getIdProyecto() {
-		return idProyecto;
+	public Proyecto getProyecto() {
+		return proyecto;
 	}
 
-
-	public void setIdProyecto(String idProyecto) {
-		this.idProyecto = idProyecto;
+	public void setProyecto(Proyecto proyecto) {
+		this.proyecto = proyecto;
 	}
 
-
-	public int getIdEmpl() {
-		return idEmpl;
+	public Empleado getEmpleado() {
+		return empleado;
 	}
 
-
-	public void setIdEmpl(int idEmpl) {
-		this.idEmpl = idEmpl;
+	public void setEmpleado(Empleado empleado) {
+		this.empleado = empleado;
 	}
-
 
 	public int getHorasAsignadas() {
 		return horasAsignadas;
 	}
 
-
 	public void setHorasAsignadas(int horasAsignadas) {
 		this.horasAsignadas = horasAsignadas;
 	}
-
 
 	public LocalDate getFechaIncorporacion() {
 		return fechaIncorporacion;
 	}
 
-
 	public void setFechaIncorporacion(LocalDate fechaIncorporacion) {
 		this.fechaIncorporacion = fechaIncorporacion;
 	}
-
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(numeroOrden);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -111,14 +101,15 @@ public class ProyectoConEmpleados {
 		ProyectoConEmpleados other = (ProyectoConEmpleados) obj;
 		return numeroOrden == other.numeroOrden;
 	}
-
+	
+	
 
 	@Override
 	public String toString() {
-		return "ProyectoConEmpleados [numeroOrden=" + numeroOrden + ", idProyecto=" + idProyecto + ", idEmpl=" + idEmpl
+		return "ProyectoConEmpleados [numeroOrden=" + numeroOrden + ", proyecto=" + proyecto + ", empleado=" + empleado
 				+ ", horasAsignadas=" + horasAsignadas + ", fechaIncorporacion=" + fechaIncorporacion + "]";
 	}
-	
+
 	public double costeHorasAsignadas() {
 		return 0;
 	}
