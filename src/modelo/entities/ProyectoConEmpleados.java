@@ -111,6 +111,6 @@ public class ProyectoConEmpleados {
 	}
 
 	public double costeHorasAsignadas() {
-		return 0;
+		return horasAsignadas * empleado.getPerfil().getTasaStandard();
 	}
 }
