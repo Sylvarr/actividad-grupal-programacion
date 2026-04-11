@@ -30,9 +30,9 @@ public class TestEmpleadosEnProyectoDao {
 		uno(); //buscarProyectoConEmpleados
 		todos();//findAll
 		alta();//crearProyectoConEmpleados
+		asignarEmpleados();//asignarEmpleadosAProyecto
 		modificar();//actualizarProyectoConEmpleados
 		eliminar();//eliminarProyectoConEmpleados
-		asignarEmpleados();//asignarEmpleadosAProyecto
 		horasAsignadas();//horasAsignadasAProyecto
 		empleadosPorProyecto();//empleadosbyProyecto
 		costeDeLosEmpleadosActualmente();//costeActualDeEmpleadosEnProyecto
