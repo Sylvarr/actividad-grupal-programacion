@@ -57,30 +57,30 @@ public class Empleado {
 		this.departamento = departamento;
 	}
 
-	// ===================== MÉTODOS PROPIOS =====================
+	//MÉTODOS PROPIOS
 
 	/**
-	 * Calcula el salario mensual dividiendo el salario anual entre el número de meses.
+	 * Calcula el salario mensual dividiendo el salario anual entre el número de meses
 	 */
 	public double salarioMensual(int meses) {
 		return salario / meses;
 	}
 
 	/**
-	 * Devuelve "Hombre" si el género es H/h, "Mujer" si es M/m.
+	 * Devuelve "Hombre" si el género es H/h, "Mujer" si es M/m
 	 */
 	public String literalGenero() {
 		return (genero == 'H' || genero == 'h') ? "Hombre" : "Mujer";
 	}
 
 	/**
-	 * Devuelve el nombre completo: nombre + " " + apellidos.
+	 * Devuelve el nombre completo: nombre + " " + apellidos
 	 */
 	public String nombreCompleto() {
 		return nombre + " " + apellidos;
 	}
 
-	// ===================== GETTERS Y SETTERS =====================
+	//GETTERS Y SETTERS
 
 	public int getIdEmpl() {
 		return idEmpl;
