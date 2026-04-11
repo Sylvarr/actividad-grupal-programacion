@@ -36,7 +36,7 @@ public class Proyecto {
   private double costesPrevisto;
 
   @Column(name = "coste_real")
-  private double costeReal;
+  private Double costeReal;
 
   private String estado;
 
@@ -145,11 +145,11 @@ public class Proyecto {
     this.costesPrevisto = costesPrevisto;
   }
 
-  public double getCosteReal() {
+  public Double getCosteReal() {
     return costeReal;
   }
 
-  public void setCosteReal(double costeReal) {
+  public void setCosteReal(Double costeReal) {
     this.costeReal = costeReal;
   }
 

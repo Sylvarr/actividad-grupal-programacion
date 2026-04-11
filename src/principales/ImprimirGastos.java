@@ -27,7 +27,12 @@ public class ImprimirGastos {
 	}
 
 	public static void main(String[] args) {
-		Proyecto proyecto = pdao.proyectosByEstado("TERMINADO").get(0);
+		List<Proyecto> terminados = pdao.proyectosByEstado("TERMINADO");
+		if (terminados.isEmpty()) {
+			System.out.println("No hay proyectos TERMINADO en la base de datos.");
+			return;
+		}
+		Proyecto proyecto = terminados.get(0);
 		imprimirInforme(proyecto);
 
 	}
@@ -50,8 +55,8 @@ public class ImprimirGastos {
 
 	public static void imprimirInforme(Proyecto proyecto) {
 		System.out.println("Datos del CLIENTE");
-		System.out.println(
-				"Nombre : " + proyecto.getCliente().getNombre() + " Dirección : " + proyecto.getCliente().getDomicilio());
+		System.out.println("Nombre : " + proyecto.getCliente().getNombre() + " " + proyecto.getCliente().getApellidos()
+				+ " Dirección : " + proyecto.getCliente().getDomicilio());
 		System.out.println("Datos del PROYECTO");
 		System.out.println("Código Proyecto : " + proyecto.getIdProyecto());
 		System.out.println("Descripción Proyecto : " + proyecto.getDescripcion());
@@ -75,6 +80,7 @@ public class ImprimirGastos {
 
 		List<ProyectoConProductos> productos = ppdao.productosByProyecto(proyecto.getIdProyecto());
 		double totalImportes = 0;
+		System.out.println("LISTA PRODUCTOS");
 		for (ProyectoConProductos pcp : productos) {
 			double total = pcp.getCantidad() * pcp.getPrecioAsignado();
 			totalImportes = totalImportes + total;
