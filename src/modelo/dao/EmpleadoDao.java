@@ -14,7 +14,7 @@ public interface EmpleadoDao {
 
 	boolean eliminarEmpleado(int idEmpl);
 
-	// Métodos extra
+
 	List<Empleado> empleadosByDepartamento(int idDepar);
 
 	List<Empleado> empleadosByGenero(char sexo);
