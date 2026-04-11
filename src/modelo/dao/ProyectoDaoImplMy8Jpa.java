@@ -99,7 +99,7 @@ public class ProyectoDaoImplMy8Jpa implements ProyectoDao {
     EntityManager em = JpaUtil.getEntityManager();
     try {
       return em.createQuery(
-              "SELECT p FROM Proyecto p WHERE p.jefeProyecto = :jefe AND p.estado = :estado", Proyecto.class)
+          "SELECT p FROM Proyecto p WHERE p.jefeProyecto = :jefe AND p.estado = :estado", Proyecto.class)
           .setParameter("jefe", jefeProyecto)
           .setParameter("estado", estado)
           .getResultList();
@@ -113,7 +113,7 @@ public class ProyectoDaoImplMy8Jpa implements ProyectoDao {
     EntityManager em = JpaUtil.getEntityManager();
     try {
       Double result = em.createQuery(
-              "SELECT COALESCE(SUM(p.ventaPrevisto), 0) FROM Proyecto p WHERE p.estado = 'terminado'", Double.class)
+          "SELECT COALESCE(SUM(p.ventaPrevisto), 0) FROM Proyecto p WHERE p.estado = 'TERMINADO'", Double.class)
           .getSingleResult();
       return result;
     } finally {
@@ -125,9 +125,9 @@ public class ProyectoDaoImplMy8Jpa implements ProyectoDao {
   public double margenBrutoProyectosTerminados() {
     EntityManager em = JpaUtil.getEntityManager();
     try {
-        return em.createQuery(
-              "SELECT COALESCE(SUM(p.ventaPrevisto) - SUM(p.costeReal), 0) FROM Proyecto p WHERE p.estado = 'terminado'",
-              Double.class)
+      return em.createQuery(
+          "SELECT COALESCE(SUM(p.ventaPrevisto) - SUM(p.costeReal), 0) FROM Proyecto p WHERE p.estado = 'TERMINADO'",
+          Double.class)
           .getSingleResult();
     } finally {
       em.close();
@@ -158,4 +158,3 @@ public class ProyectoDaoImplMy8Jpa implements ProyectoDao {
   }
 
 }
-

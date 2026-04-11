@@ -6,6 +6,7 @@
 
     <persistence-unit name="proyectosFP" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+
         <class>modelo.entities.Cliente</class>
         <class>modelo.entities.Familia</class>
         <class>modelo.entities.Producto</class>
@@ -15,12 +16,14 @@
         <class>modelo.entities.Departamento</class>
         <class>modelo.entities.Empleado</class>
         <class>modelo.entities.Perfil</class>
+        <class>modelo.entities.ProyectoConEmpleados</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
             <property name="jakarta.persistence.jdbc.url"
                 value="jdbc:mysql://localhost:3306/proyectos_FP_2025" />
             <property name="jakarta.persistence.jdbc.user" value="root" />
             <property name="jakarta.persistence.jdbc.password" value="root" />
+
 
             <property name="eclipselink.logging.level" value="INFO" />
             <property name="eclipselink.target-database" value="MySQL" />

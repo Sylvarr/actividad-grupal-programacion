@@ -22,8 +22,7 @@ public class Perfil {
 	public Perfil() {
 	}
 
-	public Perfil(int idPerfil, String nombre, double tasaStandard) {
-		this.idPerfil = idPerfil;
+	public Perfil(String nombre, double tasaStandard) {
 		this.nombre = nombre;
 		this.tasaStandard = tasaStandard;
 	}
